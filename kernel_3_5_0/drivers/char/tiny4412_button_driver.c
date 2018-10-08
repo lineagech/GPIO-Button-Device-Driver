@@ -28,6 +28,7 @@ struct button_dev {
 	int number;
 	char* name;
 	struct timer_list timer;
+	struct cdev cdev;
 };
 
 /* struct file 
@@ -62,13 +63,13 @@ static unsigned int gpio_button_poll(struct file* file, struct poll_table_struct
 	/* return a bit mask indicating whether non-blocking reads or writes are possible */
 }
 
-static void buttons_setup_dev(struct buttons_dev* buttons_dev, int index)
+static void buttons_setup_dev(struct button_dev* p_button_dev, int index)
 {
 	int err;
-	cdev_init(&dev->c_dev, &button_fops);
-	dev->cdev.owner = THIS_MODULE;
-	dev->cdev.ops = &button_ops;
-	err = cdev_add(&dev->cdev, devno, 1);
+	cdev_init(&p_button_dev->c_dev, &button_fops);
+	p_button_dev->cdev.owner = THIS_MODULE;
+	p_button_dev->cdev.ops = &button_fops;
+	err = cdev_add(&p_button_dev->cdev, devno, 1);
 	if(err){
 		printk(KERN_NOTICE "Error %d adding button", err, index);
 	}
@@ -86,48 +87,13 @@ static int __init tiny4412_buttons_init(void)
 	else {
 		printk(KERN_WARNING "%s : register with major number %l and minor number %l", __func__, MAJOR(dev), MINOR(dev));
 	}
+	
+	/* Register Character Devices */
+	//buttons_setup_dev(&button_dev, 0);
 }
 
 static int __exit tiny4412_buttons_exit(void)
 {
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
