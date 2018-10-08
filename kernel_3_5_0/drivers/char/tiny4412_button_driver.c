@@ -6,6 +6,7 @@
 #include <linux/fs.h>
 #include <linux/module.h>
 #include <linux/fcntl.h>
+#include <linux/irq.h>
 
 #include <linux/timer.h>
 
@@ -29,6 +30,13 @@ struct button_dev {
 	char* name;
 	struct timer_list timer;
 	struct cdev cdev;
+};
+
+static strcut button_dev buttons[] = {
+	{ EXYNOS4_GPX3(2), 0, "KEY0" },
+	{ EXYNOS4_GPX3(3), 1, "KEY1" },
+	{ EXYNOS4_GPX3(4), 2, "KEY2" },
+	{ EXYNOS4_GPX3(5), 3, "KEY3" },
 };
 
 /* struct file 
@@ -77,19 +85,26 @@ static void buttons_setup_dev(struct button_dev* p_button_dev, int index)
 
 static int __init tiny4412_buttons_init(void)
 {	
-	/* Allocate Device Major Number and Minor Number */
-	printk(KERN_INFO "dynamically allocate major and minor number...\n");
-	int alloc_re = 0;
-	alloc_re = alloc_chrdev_region(&devno, DEVNUM_MINOR_START, DEVNUM_COUUNT, DEVNUM_NAME);
-	if( alloc_re ) {
-		printk(KERN_WARNING "%s : could not allocate device number", __func__);
-	}
-	else {
-		printk(KERN_WARNING "%s : register with major number %l and minor number %l", __func__, MAJOR(dev), MINOR(dev));
+	int i;
+	for( i = 0; i < ARRAY_SIZE(buttons); i++ )
+	{
+		/* Allocate Device Major Number and Minor Number */
+		printk(KERN_INFO "dynamically allocate major and minor number...\n");
+		int alloc_re = 0;
+		alloc_re = alloc_chrdev_region(&devno, DEVNUM_MINOR_START, DEVNUM_COUUNT, DEVNUM_NAME);
+		if( alloc_re ) {
+			printk(KERN_WARNING "%s : could not allocate device number", __func__);
+		}	
+		else {
+			printk(KERN_WARNING "%s : register with major number %l and minor number %l", __func__, MAJOR(dev), MINOR(dev));
+		}
+	
+		/* Register Character Devices */
+		//buttons_setup_dev(&button_dev, 0);
+		
+		
 	}
 	
-	/* Register Character Devices */
-	//buttons_setup_dev(&button_dev, 0);
 }
 
 static int __exit tiny4412_buttons_exit(void)
