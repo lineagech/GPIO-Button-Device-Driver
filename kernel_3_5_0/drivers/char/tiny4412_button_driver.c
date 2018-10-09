@@ -151,6 +151,7 @@ static int __init tiny4412_buttons_init(void)
 			break;	
 		}
 	}
+	printk("tiny4412_buttons_init completed!");
 }
 
 static int __exit tiny4412_buttons_exit(void)
@@ -173,5 +174,12 @@ static int __exit tiny4412_buttons_exit(void)
 		disable_irq(irq);
 		free_irq(irq, (void *)&button_dev[i]);
 	}
+	printk("tiny4412_buttons_exit completed!");
 }
+
+
+module_init(tiny4412_buttons_init);
+module_exit(tiny4412_buttons_exit);
+
+MODULE_LICENSE("GPL");
 
