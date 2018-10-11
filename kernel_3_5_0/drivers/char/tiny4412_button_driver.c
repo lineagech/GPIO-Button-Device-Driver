@@ -11,6 +11,7 @@
 #include <linux/interrupt.h>
 #include <linux/timer.h>
 #include <linux/kernel.h>
+#include <linux/string.h>
 
 #include <mach/gpio.h>
 
@@ -47,13 +48,17 @@ static strcut gpio_buttons_dev gpio_buttons_dev = {
 	"Chia-Hao GPIO Device Driver"
 };
 
-static char button_val[] = {
+static volatile char button_val[] = {
 	'0', '0', '0', '0'
 };
 
 /* Declare wait queue*/
 static DECLARE_WAIT_QUEUE_HEAD(button_waitq);
-static unsigned int button_press = 0;
+static volatile int button_press = 0;
+
+/* spinlock */
+spinlock_t lock; 
+unsigned int flags;
 
 void gpio_button_timer_hanlder(unsigned long _data)
 {	
@@ -63,13 +68,17 @@ void gpio_button_timer_hanlder(unsigned long _data)
 	int read_value = gpio_get_value(dev->gpio);
 	
 	printk(KERN_DEBUG "BUTTON %d: %08x\n", dev->number, read_value);
-	if(read_value == 0) button_press = 1;
 	
+	spin_lock_irqsave(&lock, flags); // lock
+	
+	if( read_value == 0 ) button_press = 1;
 	if( button_press )
 	{	
-		button_press = 0;
+		button_val[dev->number] = '0'+1;
 		wake_up_interruptible(button_waitq);	
 	}
+	
+	spin_unlock_irqrestore(&lock, flags); // unlock
 }
 
 static irqreturn_t gpio_interrupt_handler (int irq, void *dev_id)
@@ -105,13 +114,13 @@ static int gpio_button_open (struct inode* inode, struct file* filp)
 	for( i = 0; i < ARRAY_SIZE(buttons); i++ )
 	{
 		/* Set up timer */
-		init_timer( &button_dev[i].timer );
-		setup_timer( &button_dev[i].timer, gpio_button_timer_hanlder, &button_dev[i] );
+		init_timer( &p_gpio_buttons_dev->button_dev[i].timer );
+		setup_timer( &p_gpio_buttons_dev->button_dev[i].timer, gpio_button_timer_hanlder, &p_gpio_buttons_dev->button_dev[i] );
 		
 		/* Initialize IRQ */
-		irq = gpio_to_irq(button_dev[i].gpio); // translate to irq number
+		irq = gpio_to_irq(p_gpio_buttons_dev->button_dev[i].gpio); // translate to irq number
 		err = request_irq(irq, gpio_interrupt_handler, IRQ_TYPE_EDGE_FALLING, 
-			  	  button_dev[i].name, (void *)&button_dev[i]);
+			  	  p_gpio_buttons_dev->button_dev[i].name, (void *)&(p_gpio_buttons_dev->button_dev[i]));
 		
 		if( err ){
 			init_err_hanlder(i);
@@ -119,10 +128,49 @@ static int gpio_button_open (struct inode* inode, struct file* filp)
 		}
 	}
 }
-static ssize_t gpio_button_read (struct file* file, char __user* buff, size_t count, loff_t* p_off)
+static ssize_t gpio_button_read (struct file* filp, char __user* buff, size_t count, loff_t* p_off)
 {	
-	// how can I get struct button_dev?
+	int err = 0;
+	int copy_button_press;
+	char copy_button_val[4];
+	// interruptible_sleep_on(struct wait_queue **wq)
 	
+	spin_lock_irqsave(&lock, flags);
+	copy_button_press = button_press;
+	memcpy( &copy_button_val[0], &button_val[0], ARRAY_SIZE(button_val)*sizeof(char) );
+	if( copy_button_press == 1 )
+	{
+		//clear
+		button_press = 0;
+		memset(&button_val[0], 0, ARRAY_SIZE(button_val)*sizeof(char) );
+	}
+	spin_lock_irqrestore(&lock, flags);
+	
+	if( copy_button_press == 0 ) 
+	{	
+		if( flip->f_flags & O_NONBLOCK )
+			return -1;
+		wait_event_interruptible(button_waitq, button_press); // lock
+		
+		spin_lock_irqsave(&lock, flags);
+		err = copy_to_user((void *)buff, (const void *)(&button_val),
+			            min(sizeof(button_val), count));
+		//clear
+		button_press = 0;
+		memset(&button_val[0], 0, ARRAY_SIZE(button_val)*sizeof(char) );
+		
+		spin_lock_irqrestore(&lock, flags); // unlock
+	}
+	else
+	{
+		err = copy_to_user((void *)buff, (const void *)(&copy_button_val),
+			            min(sizeof(copy_button_val), count));
+	}
+	
+	return err ? -EFAULT : min(sizeof(button_val), count);
+}
+static int gpio_button_close(struct inode* inode, struct file* file)
+{
 	int i;
 	int irq;
 	int err;
@@ -141,10 +189,7 @@ static ssize_t gpio_button_read (struct file* file, char __user* buff, size_t co
 		disable_irq(irq);
 		free_irq(irq, (void *)&button_dev[i]);
 	}
-}
-static int gpio_button_close(struct inode* inode, struct file* file)
-{
-	
+	return 0;
 }
 static unsigned int gpio_button_poll(struct file* file, struct poll_table_struct* p_poll_table)
 {
@@ -199,12 +244,15 @@ static int __init tiny4412_buttons_init(void)
 	
 	/* Register Character Devices */
 	buttons_setup_dev(&gpio_buttons_dev);
+	
+	spin_lock_init(&lock);
 	//}
 	printk("tiny4412_buttons_init completed!");
 }
 
 static int __exit tiny4412_buttons_exit(void)
-{
+{	
+	cdev_del(&p_gpio_buttons_dev->c_dev);
 	printk("tiny4412_buttons_exit completed!");
 }
 
