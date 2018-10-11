@@ -176,18 +176,13 @@ static int gpio_button_close(struct inode* inode, struct file* file)
 	int err;
 	for( i = 0; i < ARRAY_SIZE(buttons); i++ )
 	{	
-		/* Unregister major/minor number */
-		int major_num = MAJOR(devno);
-		int minor_num = MINOR(devno);
-		unregister_chrdev_region(MKDEV(major_num, minor_num), DEVNUM_MINOR_START, DEVNUM_COUUNT , DEVNUM_NAME);
-		
 		/* Delete timer */
-		del_timer_sync(&button_dev[i].timer);
+		del_timer_sync(&gpio_buttons_dev.button_dev[i].timer);
 		
 		/* Close irq */
-		irq = gpio_to_irq(button_dev[i].gpio);
+		irq = gpio_to_irq(gpio_buttons_dev.button_dev[i].gpio);
 		disable_irq(irq);
-		free_irq(irq, (void *)&button_dev[i]);
+		free_irq(irq, (void *)&gpio_buttons_dev.button_dev[i]);
 	}
 	return 0;
 }
@@ -252,7 +247,11 @@ static int __init tiny4412_buttons_init(void)
 
 static int __exit tiny4412_buttons_exit(void)
 {	
-	cdev_del(&p_gpio_buttons_dev->c_dev);
+	//cdev_del(&p_gpio_buttons_dev->c_dev);
+	/* Unregister major/minor number */
+	int major_num = MAJOR(devno);
+	int minor_num = MINOR(devno);
+	unregister_chrdev_region(MKDEV(major_num, minor_num), DEVNUM_MINOR_START, DEVNUM_COUUNT , DEVNUM_NAME);
 	printk("tiny4412_buttons_exit completed!");
 }
 
