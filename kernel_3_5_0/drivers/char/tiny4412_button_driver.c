@@ -10,6 +10,7 @@
 #include <linux/gpio.h>
 #include <linux/interrupt.h>
 #include <linux/timer.h>
+#include <linux/kernel.h>
 
 #include <mach/gpio.h>
 
@@ -27,19 +28,27 @@ static struct file_operation button_fops = {
 	.poll 			= gpio_button_poll
 };
 
-struct button_dev {
-	int gpio;
-	int number;
-	char* name;
-	struct timer_list timer;
+struct gpio_buttons_dev {
+	struct button_dev {
+		int gpio;
+		int number;
+		char* name;
+		struct timer_list timer;
+	} button_dev[4];
+	char* identifier;
 	struct cdev cdev;
 };
 
-static strcut button_dev buttons[] = {
-	{ EXYNOS4_GPX3(2), 0, "KEY0" },
+static strcut gpio_buttons_dev gpio_buttons_dev = {
+	{{ EXYNOS4_GPX3(2), 0, "KEY0" },
 	{ EXYNOS4_GPX3(3), 1, "KEY1" },
 	{ EXYNOS4_GPX3(4), 2, "KEY2" },
-	{ EXYNOS4_GPX3(5), 3, "KEY3" },
+	{ EXYNOS4_GPX3(5), 3, "KEY3" },},
+	"Chia-Hao GPIO Device Driver"
+};
+
+static char button_val[] = {
+	'0', '0', '0', '0'
 };
 
 /* Declare wait queue*/
@@ -84,8 +93,15 @@ static irqreturn_t gpio_interrupt_handler (int irq, void *dev_id)
   * 	.struct cdev* i_cdev; // kernel internal structure that represents char devices
   * */
  
-static int gpio_button_open (struct inode* inode, struct file* file)
+static int gpio_button_open (struct inode* inode, struct file* filp)
 {	
+	// container_of macro ?
+	struct gpio_buttons_dev *p_gpio_buttons_dev;
+	p_gpio_buttons_dev = container_of(inode->i_cdev, struct gpio_buttons_dev, cdev);
+	filp->private_data = (void*)p_gpio_buttons_dev;
+	printk("open %s", p_gpio_buttons_dev->identifier);
+	
+	
 	for( i = 0; i < ARRAY_SIZE(buttons); i++ )
 	{
 		/* Set up timer */
@@ -136,13 +152,13 @@ static unsigned int gpio_button_poll(struct file* file, struct poll_table_struct
 	/* return a bit mask indicating whether non-blocking reads or writes are possible */
 }
 
-static void buttons_setup_dev(struct button_dev* p_button_dev, int index)
+static void buttons_setup_dev(struct gpio_buttons_dev* p_gpio_buttons_dev)
 {
 	int err;
-	cdev_init(&p_button_dev->c_dev, &button_fops);
-	p_button_dev->cdev.owner = THIS_MODULE;
-	p_button_dev->cdev.ops = &button_fops;
-	err = cdev_add(&p_button_dev->cdev, devno, 1);
+	cdev_init(&p_gpio_buttons_dev->c_dev, &button_fops);
+	p_gpio_buttons_dev->cdev.owner = THIS_MODULE;
+	p_gpio_buttons_dev->cdev.ops = &button_fops;
+	err = cdev_add(&p_gpio_buttons_dev->cdev, devno, 1);
 	if(err){
 		printk(KERN_NOTICE "Error %d adding button", err, index);
 	}
@@ -182,7 +198,7 @@ static int __init tiny4412_buttons_init(void)
 	}
 	
 	/* Register Character Devices */
-	buttons_setup_dev(&button_dev, i);
+	buttons_setup_dev(&gpio_buttons_dev);
 	//}
 	printk("tiny4412_buttons_init completed!");
 }
