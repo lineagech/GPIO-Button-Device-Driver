@@ -247,7 +247,7 @@ static int __init tiny4412_buttons_init(void)
 
 static int __exit tiny4412_buttons_exit(void)
 {	
-	//cdev_del(&p_gpio_buttons_dev->c_dev);
+	cdev_del(&p_gpio_buttons_dev->c_dev);
 	/* Unregister major/minor number */
 	int major_num = MAJOR(devno);
 	int minor_num = MINOR(devno);
