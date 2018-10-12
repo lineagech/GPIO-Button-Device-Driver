@@ -137,6 +137,10 @@ static ssize_t gpio_button_read (struct file* filp, char __user* buff, size_t co
 	char copy_button_val[4];
 	// interruptible_sleep_on(struct wait_queue **wq)
 	
+	// Firstly check file flags to see if non-blocking
+	if (filp->f_flags & O_NONBLOCK)
+		return -EAGAIN;
+	
 	spin_lock_irqsave(&lock, flags);
 	copy_button_press = button_press;
 	memcpy( &copy_button_val[0], &button_val[0], ARRAY_SIZE(button_val)*sizeof(char) );
