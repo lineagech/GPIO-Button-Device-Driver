@@ -1,3 +1,19 @@
 https://hk.saowen.com/a/59d39177d1d39c755cbe316a3a10757845cb6bcb82a8e33e54eca680f2070e69
 http://brainychen72.blogspot.com/2014/11/waiteventinterruptible.html (關於 wait_event_interruptible() 和 wake_up()的使用)
 http://silverfoxkkk.pixnet.net/blog/post/44902897-lddp%3A%E5%8D%81%E3%80%81%E5%90%8C%E6%AD%A5%E8%88%87%E9%8E%96%E5%AE%9A (同步與鎖定)
+
+
+
+--- poll_wait explanation ---
+
+https://stackoverflow.com/questions/30234496/why-do-we-need-to-call-poll-wait-in-poll/30254275
+foreach fd:
+    find device corresponding to fd
+    call device poll function to setup wait queues (with poll_wait) and to collect its "ready-now" mask
+
+while time remaining in timeout and no devices are ready:
+    sleep
+
+return from system call (either due to timeout or to ready devices)
+
+----------------------------------------------------------------------------------------------------------
