@@ -15,6 +15,8 @@
 
 #include <mach/gpio.h>
 
+#include <asm/uaccess.h> // for copy_to_user
+
 #define DEVNUM_COUNT 			1
 #define DEVNUM_NAME 			"buttons"
 #define DEVNUM_MINOR_START 		0
