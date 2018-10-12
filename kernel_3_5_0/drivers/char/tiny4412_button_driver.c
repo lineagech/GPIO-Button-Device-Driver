@@ -12,6 +12,7 @@
 #include <linux/timer.h>
 #include <linux/kernel.h>
 #include <linux/string.h>
+#include <linux/poll.h>
 
 #include <mach/gpio.h>
 
