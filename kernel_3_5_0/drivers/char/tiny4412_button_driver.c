@@ -247,6 +247,9 @@ static int __init tiny4412_buttons_init(void)
 	/* Register Character Devices */
 	buttons_setup_dev(&gpio_buttons_dev);
 	
+	// TODO:
+	// create_class -> automatically generate device node under /dev/xxx...
+	
 	spin_lock_init(&lock);
 	//}
 	printk("tiny4412_buttons_init completed!");
