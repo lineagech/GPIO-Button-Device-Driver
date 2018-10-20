@@ -570,6 +570,40 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/aio.h \
   include/linux/aio_abi.h \
   include/linux/uio.h \
+  include/linux/device.h \
+    $(wildcard include/config/debug/devres.h) \
+    $(wildcard include/config/devtmpfs.h) \
+    $(wildcard include/config/sysfs/deprecated.h) \
+  include/linux/ioport.h \
+  include/linux/klist.h \
+  include/linux/pm.h \
+    $(wildcard include/config/pm.h) \
+    $(wildcard include/config/pm/runtime.h) \
+    $(wildcard include/config/pm/clk.h) \
+    $(wildcard include/config/pm/generic/domains.h) \
+  include/linux/ratelimit.h \
+  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/device.h \
+    $(wildcard include/config/dmabounce.h) \
+    $(wildcard include/config/iommu/api.h) \
+    $(wildcard include/config/arm/dma/use/iommu.h) \
+    $(wildcard include/config/arch/omap.h) \
+  include/linux/pm_wakeup.h \
+  include/linux/proc_fs.h \
+    $(wildcard include/config/proc/devicetree.h) \
+    $(wildcard include/config/proc/kcore.h) \
+  include/linux/slab.h \
+    $(wildcard include/config/slab/debug.h) \
+    $(wildcard include/config/failslab.h) \
+    $(wildcard include/config/slub.h) \
+    $(wildcard include/config/slob.h) \
+    $(wildcard include/config/debug/slab.h) \
+    $(wildcard include/config/slab.h) \
+  include/linux/slub_def.h \
+    $(wildcard include/config/slub/stats.h) \
+    $(wildcard include/config/slub/debug.h) \
+  include/linux/kmemleak.h \
+    $(wildcard include/config/debug/kmemleak.h) \
+  include/linux/magic.h \
 
 /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o: $(deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o)
 

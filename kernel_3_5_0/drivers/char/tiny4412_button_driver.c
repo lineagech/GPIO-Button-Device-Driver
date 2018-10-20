@@ -17,6 +17,8 @@
 #include <linux/spinlock.h>
 #include <linux/wait.h> // wait event
 #include <linux/sched.h> // TASK_INTERRUPTIBLE
+#include <linux/device.h>
+#include <linux/proc_fs.h>
 
 #include <mach/gpio.h>
 
@@ -52,6 +54,9 @@ struct gpio_buttons_dev {
 	} button_dev[4];
 	char* identifier;
 	struct cdev cdev;
+	struct class *chrdev_rw_class;
+	struct device *chrdev_rw_device;
+	struct proc_dir_entry *proc_dir;
 };
 
 static struct gpio_buttons_dev gpio_buttons_dev = {
@@ -263,6 +268,16 @@ static int __init tiny4412_buttons_init(void)
 	
 	// TODO:
 	// create_class -> automatically generate device node under /dev/xxx...
+	gpio_buttons_dev.chrdev_rw_class = class_create( THIS_MODULE, DEVNUM_NAME );
+	gpio_buttons_dev.chrdev_rw_device = device_create( gpio_buttons_dev.chrdev_rw_class,
+                                                       NULL,
+													   devno,
+                                                       NULL,
+													   "%s-%d", DEVNUM_NAME, 0
+                                                      );
+	#define PROC_DIR_NAME "button_info"	
+	gpio_buttons_dev.proc_dir = proc_mkdir(PROC_DIR_NAME, NULL);
+	proc_create(DEVNUM_NAME, 666, gpio_buttons_dev.proc_dir, &button_fops);
 	
 	spin_lock_init(&lock);
 	//}
