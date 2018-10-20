@@ -1,10 +1,13 @@
-KDIR="/opt/linux-source-2.6.38"
-PWD=$(shell pwd)
+PWD := $(shell pwd)
 
-#obj-m := test_select.o
 obj-m := tiny4412_button_driver.o
 
-all:
-    $(MAKE) -C ${KDIR} M=${PWD} modules
+modules:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+
+install:
+	sudo cp tiny4412_button_driver.o $(INSTALLDIR)
 clean:
-    $(MAKE) -C ${KDIR} M=${PWD} clean
+	rm -rf *.o *~ core .depend .*.cmd *.ko .tmp_versions modules.order Module.symvers
+
+.PHONY: modules install clean
