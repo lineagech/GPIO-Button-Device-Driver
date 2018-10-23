@@ -88,7 +88,7 @@ void gpio_button_timer_hanlder(unsigned long _data)
 	//int read_value = *(dev->gpio); //?
 	int read_value = gpio_get_value(dev->gpio);
 	
-	printk(KERN_DEBUG "BUTTON %d: %08x\n", dev->number, read_value);
+	printk("BUTTON %d: %08x\n", dev->number, read_value);
 	
 	spin_lock_irqsave(&lock, flags); // lock
 	
@@ -106,6 +106,7 @@ static irqreturn_t gpio_interrupt_handler (int irq, void *dev_id)
 {
 	struct button_dev* dev = (struct button_dev*)dev_id;
 	mod_timer(&dev->timer, jiffies + msecs_to_jiffies(40));
+	printk(KERN_ERR"GPIO Interrupts!");
 	return IRQ_HANDLED;
 }
 
@@ -281,7 +282,7 @@ static int __init tiny4412_buttons_init(void)
 	
 	spin_lock_init(&lock);
 	//}
-	printk("tiny4412_buttons_init completed!");
+	printk(KERN_WARNING"tiny4412_buttons_init completed!\n");
 	
 	return 0;
 }
@@ -293,7 +294,13 @@ static void __exit tiny4412_buttons_exit(void)
 	int minor_num = MINOR(devno);
 	cdev_del(&gpio_buttons_dev.cdev);
 	unregister_chrdev_region(MKDEV(major_num, minor_num), DEVNUM_COUNT);
-	printk("tiny4412_buttons_exit completed!");
+	
+	remove_proc_entry(DEVNUM_NAME, gpio_buttons_dev.proc_dir);
+	
+	device_destroy(gpio_buttons_dev.chrdev_rw_class, devno);
+	class_destroy(gpio_buttons_dev.chrdev_rw_class);
+	
+	printk(KERN_WARNING"tiny4412_buttons_exit completed!\n");
 }
 
 
