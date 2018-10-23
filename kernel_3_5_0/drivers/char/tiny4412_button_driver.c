@@ -296,6 +296,7 @@ static void __exit tiny4412_buttons_exit(void)
 	unregister_chrdev_region(MKDEV(major_num, minor_num), DEVNUM_COUNT);
 	
 	remove_proc_entry(DEVNUM_NAME, gpio_buttons_dev.proc_dir);
+	remove_proc_entry(PROC_DIR_NAME, NULL);
 	
 	device_destroy(gpio_buttons_dev.chrdev_rw_class, devno);
 	class_destroy(gpio_buttons_dev.chrdev_rw_class);
