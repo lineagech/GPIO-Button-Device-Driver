@@ -1,4 +1,4 @@
-cmd_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o := arm-linux-gnueabi-gcc -Wp,-MD,/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/.tiny4412_button_driver.o.d  -nostdinc -isystem /home/cadtc/tiny4412/toolchain/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/4.9.4/include -I/home/cadtc/tiny4412/linux-master/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/cadtc/tiny4412/linux-master/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-exynos/include -Iarch/arm/plat-samsung/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(tiny4412_button_driver)"  -D"KBUILD_MODNAME=KBUILD_STR(tiny4412_button_driver)" -c -o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.c
+cmd_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o := arm-linux-gcc -Wp,-MD,/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/.tiny4412_button_driver.o.d  -nostdinc -isystem /usr/local/arm/4.5.1/bin/../lib/gcc/arm-none-linux-gnueabi/4.5.1/include -I/home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/cadtc/day4/linux-3.5-Tiny4412/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-exynos/include -Iarch/arm/plat-samsung/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(tiny4412_button_driver)"  -D"KBUILD_MODNAME=KBUILD_STR(tiny4412_button_driver)" -c -o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.c
 
 source_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.o := /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.c
 
@@ -22,13 +22,13 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/types.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
   arch/arm/include/generated/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   include/linux/posix_types.h \
   include/linux/stddef.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/posix_types.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/posix_types.h \
   include/asm-generic/posix_types.h \
   include/linux/module.h \
     $(wildcard include/config/sysfs.h) \
@@ -49,7 +49,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/illegal/pointer/value.h) \
   include/linux/const.h \
   include/linux/stat.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/stat.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/stat.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
   include/linux/cache.h \
@@ -62,22 +62,22 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/numa.h) \
     $(wildcard include/config/compaction.h) \
   include/linux/sysinfo.h \
-  /home/cadtc/tiny4412/toolchain/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabi/lib/gcc/arm-linux-gnueabi/4.9.4/include/stdarg.h \
+  /usr/local/arm/4.5.1/bin/../lib/gcc/arm-none-linux-gnueabi/4.5.1/include/stdarg.h \
   include/linux/linkage.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/linkage.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/linkage.h \
   include/linux/bitops.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/bitops.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/bitops.h \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
     $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
   include/linux/typecheck.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/irqflags.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/ptrace.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/irqflags.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/hwcap.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/hwcap.h \
   include/asm-generic/bitops/non-atomic.h \
   include/asm-generic/bitops/fls64.h \
   include/asm-generic/bitops/sched.h \
@@ -86,10 +86,10 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/asm-generic/bitops/const_hweight.h \
   include/asm-generic/bitops/lock.h \
   include/asm-generic/bitops/le.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/byteorder.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/swab.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
   include/asm-generic/bitops/ext2-atomic-setbit.h \
   include/linux/log2.h \
@@ -101,21 +101,21 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/dynamic_debug.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/string.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/string.h \
   include/linux/errno.h \
   arch/arm/include/generated/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/div64.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/compiler.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/bug.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/div64.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/compiler.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/debug/bugverbose.h) \
     $(wildcard include/config/arm/lpae.h) \
   include/asm-generic/bug.h \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/cache.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/cache.h \
     $(wildcard include/config/arm/l1/cache/shift.h) \
     $(wildcard include/config/aeabi.h) \
   include/linux/seqlock.h \
@@ -132,38 +132,38 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/compat.h) \
     $(wildcard include/config/debug/stack/usage.h) \
   include/linux/bug.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/thread_info.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/fpstate.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/domain.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/domain.h \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/cpu/use/domains.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/barrier.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/barrier.h \
     $(wildcard include/config/cpu/32v6k.h) \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/arch/has/barriers.h) \
     $(wildcard include/config/arm/dma/mem/bufferable.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/outercache.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/outercache.h \
     $(wildcard include/config/outer/cache/sync.h) \
     $(wildcard include/config/outer/cache.h) \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/spinlock_types.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/spinlock_types.h \
   include/linux/lockdep.h \
     $(wildcard include/config/lockdep.h) \
     $(wildcard include/config/lock/stat.h) \
     $(wildcard include/config/prove/rcu.h) \
   include/linux/rwlock_types.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/spinlock.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/processor.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/spinlock.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/processor.h \
     $(wildcard include/config/have/hw/breakpoint.h) \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/arm/errata/754327.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/hw_breakpoint.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/hw_breakpoint.h \
   include/linux/rwlock.h \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/inline/spin/lock.h) \
@@ -198,8 +198,8 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/atomic.h \
     $(wildcard include/config/arch/has/atomic/or.h) \
     $(wildcard include/config/generic/atomic64.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/atomic.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/cmpxchg.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/atomic.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/cmpxchg.h \
     $(wildcard include/config/cpu/sa1100.h) \
     $(wildcard include/config/cpu/sa110.h) \
     $(wildcard include/config/cpu/v6.h) \
@@ -240,7 +240,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
   include/linux/wait.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/current.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/current.h \
   include/linux/threads.h \
     $(wildcard include/config/nr/cpus.h) \
     $(wildcard include/config/base/small.h) \
@@ -252,16 +252,16 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/generated/bounds.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/page.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
     $(wildcard include/config/cpu/copy/feroceon.h) \
     $(wildcard include/config/cpu/copy/fa.h) \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/glue.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/pgtable-2level-types.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/memory.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/glue.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/pgtable-2level-types.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/memory.h \
     $(wildcard include/config/need/mach/memory/h.h) \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/dram/size.h) \
@@ -317,9 +317,9 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/jiffies.h \
   include/linux/timex.h \
   include/linux/param.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/param.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/timex.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/timex.h \
   arch/arm/mach-exynos/include/mach/timex.h \
   include/linux/topology.h \
     $(wildcard include/config/sched/smt.h) \
@@ -328,7 +328,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/use/percpu/numa/node/id.h) \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/smp.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/smp.h \
   include/linux/percpu.h \
     $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
     $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
@@ -338,7 +338,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/asm-generic/percpu.h \
   include/linux/percpu-defs.h \
     $(wildcard include/config/debug/force/weak/per/cpu.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/topology.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/topology.h \
     $(wildcard include/config/arm/cpu/topology.h) \
   include/asm-generic/topology.h \
   include/linux/mmdebug.h \
@@ -349,8 +349,8 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/rbtree.h \
   include/linux/elf.h \
   include/linux/elf-em.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/elf.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/user.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/elf.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/user.h \
   include/linux/kobject.h \
   include/linux/sysfs.h \
   include/linux/kobject_ns.h \
@@ -363,16 +363,10 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/static_key.h \
   include/linux/jump_label.h \
     $(wildcard include/config/jump/label.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/jump_label.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/system.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/exec.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/switch_to.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/system_info.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/system_misc.h \
   include/linux/export.h \
     $(wildcard include/config/symbol/prefix.h) \
     $(wildcard include/config/modversions.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/module.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/module.h \
     $(wildcard include/config/arm/unwind.h) \
   include/linux/fs.h \
     $(wildcard include/config/fs/posix/acl.h) \
@@ -418,7 +412,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/dqblk_qtree.h \
   include/linux/nfs_fs_i.h \
   include/linux/fcntl.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/fcntl.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/fcntl.h \
   include/asm-generic/fcntl.h \
   include/linux/err.h \
   include/linux/cdev.h \
@@ -428,7 +422,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/generic/pending/irq.h) \
   include/linux/irqreturn.h \
   include/linux/irqnr.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/irq.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/irq.h \
     $(wildcard include/config/sparse/irq.h) \
   arch/arm/mach-exynos/include/mach/irqs.h \
     $(wildcard include/config/soc/exynos4412.h) \
@@ -438,11 +432,11 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/irqdesc.h \
     $(wildcard include/config/irq/preflow/fasteoi.h) \
     $(wildcard include/config/proc/fs.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/hw_irq.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/hw_irq.h \
   include/linux/gpio.h \
     $(wildcard include/config/generic/gpio.h) \
     $(wildcard include/config/arch/have/custom/gpio/h.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/gpio.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/gpio.h \
     $(wildcard include/config/arch/nr/gpio.h) \
   arch/arm/mach-exynos/include/mach/gpio.h \
     $(wildcard include/config/s3c/gpio/space.h) \
@@ -464,7 +458,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/irq/time/accounting.h) \
   include/linux/ftrace_irq.h \
     $(wildcard include/config/ftrace/nmi/enter.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/hardirq.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/hardirq.h \
   include/linux/irq_cpustat.h \
   include/linux/hrtimer.h \
     $(wildcard include/config/high/res/timers.h) \
@@ -473,8 +467,8 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
   include/linux/poll.h \
   arch/arm/include/generated/asm/poll.h \
   include/asm-generic/poll.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/uaccess.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/unified.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/uaccess.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
   include/linux/sched.h \
     $(wildcard include/config/sched/debug.h) \
@@ -531,19 +525,19 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/page/debug/something/else.h) \
   include/linux/uprobes.h \
     $(wildcard include/config/arch/supports/uprobes.h) \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/mmu.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
   arch/arm/include/generated/asm/cputime.h \
   include/asm-generic/cputime.h \
   include/linux/sem.h \
   include/linux/ipc.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/ipcbuf.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/ipcbuf.h \
   include/asm-generic/ipcbuf.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/sembuf.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/sembuf.h \
   include/linux/signal.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/signal.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/signal.h \
   include/asm-generic/signal-defs.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/sigcontext.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/sigcontext.h \
   arch/arm/include/generated/asm/siginfo.h \
   include/asm-generic/siginfo.h \
   include/linux/proportions.h \
@@ -582,7 +576,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/pm/clk.h) \
     $(wildcard include/config/pm/generic/domains.h) \
   include/linux/ratelimit.h \
-  /home/cadtc/tiny4412/linux-master/arch/arm/include/asm/device.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/device.h \
     $(wildcard include/config/dmabounce.h) \
     $(wildcard include/config/iommu/api.h) \
     $(wildcard include/config/arm/dma/use/iommu.h) \

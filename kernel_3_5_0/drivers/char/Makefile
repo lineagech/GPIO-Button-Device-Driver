@@ -1,6 +1,6 @@
 PWD := $(shell pwd)
 
-obj-m := tiny4412_button_driver.o
+obj-m := tiny4412_button_driver.o pca9685_driver.o
 
 modules:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules

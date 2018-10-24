@@ -1,9 +1,8 @@
-cmd_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o := arm-linux-gcc -Wp,-MD,/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/.tiny4412_button_driver.mod.o.d  -nostdinc -isystem /usr/local/arm/4.5.1/bin/../lib/gcc/arm-none-linux-gnueabi/4.5.1/include -I/home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/cadtc/day4/linux-3.5-Tiny4412/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-exynos/include -Iarch/arm/plat-samsung/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(tiny4412_button_driver.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(tiny4412_button_driver)" -DMODULE  -c -o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.c
+cmd_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o := arm-linux-gcc -Wp,-MD,/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/.pca9685_driver.o.d  -nostdinc -isystem /usr/local/arm/4.5.1/bin/../lib/gcc/arm-none-linux-gnueabi/4.5.1/include -I/home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/cadtc/day4/linux-3.5-Tiny4412/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-exynos/include -Iarch/arm/plat-samsung/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(pca9685_driver)"  -D"KBUILD_MODNAME=KBUILD_STR(pca9685_driver)" -c -o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.c
 
-source_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o := /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.c
+source_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o := /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.c
 
-deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o := \
-    $(wildcard include/config/module/unload.h) \
+deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o := \
   include/linux/module.h \
     $(wildcard include/config/sysfs.h) \
     $(wildcard include/config/modules.h) \
@@ -15,6 +14,7 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/tracing.h) \
     $(wildcard include/config/event/tracing.h) \
     $(wildcard include/config/ftrace/mcount/record.h) \
+    $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/constructors.h) \
     $(wildcard include/config/debug/set/module/ronx.h) \
   include/linux/list.h \
@@ -368,9 +368,29 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/modversions.h) \
   /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/module.h \
     $(wildcard include/config/arm/unwind.h) \
-  include/linux/vermagic.h \
-  include/generated/utsrelease.h \
+  include/linux/platform_device.h \
+    $(wildcard include/config/suspend.h) \
+    $(wildcard include/config/hibernate/callbacks.h) \
+  include/linux/device.h \
+    $(wildcard include/config/debug/devres.h) \
+    $(wildcard include/config/devtmpfs.h) \
+    $(wildcard include/config/sysfs/deprecated.h) \
+  include/linux/ioport.h \
+  include/linux/klist.h \
+  include/linux/pm.h \
+    $(wildcard include/config/pm.h) \
+    $(wildcard include/config/pm/runtime.h) \
+    $(wildcard include/config/pm/clk.h) \
+    $(wildcard include/config/pm/generic/domains.h) \
+  include/linux/ratelimit.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/device.h \
+    $(wildcard include/config/dmabounce.h) \
+    $(wildcard include/config/iommu/api.h) \
+    $(wildcard include/config/arm/dma/use/iommu.h) \
+    $(wildcard include/config/arch/omap.h) \
+  include/linux/pm_wakeup.h \
+  include/linux/mod_devicetable.h \
 
-/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o: $(deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o)
+/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o: $(deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o)
 
-$(deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/tiny4412_button_driver.mod.o):
+$(deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o):

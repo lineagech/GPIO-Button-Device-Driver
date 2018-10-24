@@ -18,7 +18,7 @@
 #include <linux/wait.h> // wait event
 #include <linux/sched.h> // TASK_INTERRUPTIBLE
 #include <linux/device.h>
-#include <linux/proc_fs.h>
+#include <linux/proc_fs.h> // proc_create, remove_proc_entry
 
 #include <mach/gpio.h>
 
