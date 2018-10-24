@@ -8,18 +8,23 @@ MODULE_LICENSE("GPL");
 #define DEVNAME ""
 #define DYN_ALLOC 1
 
+/*
 static struct platform_device pca9685_dev = {
 	.name = DEVNAME
 };
+*/
+static struct platform_device* pca9685_dev;
 
 static int pca9685_driver_probe( struct platform_device* pdev )
 {
 	printk("%s\n", __func__);
+	return 0;
 }
 
 static int pca9685_driver_remove( struct platform_device* pdev )
 {
 	printk("%s\n", __func__);
+	return 0;
 }
 
 static struct platform_driver pca9685_driver = {
@@ -36,29 +41,39 @@ static int __init pca9685_driver_init(void)
 	int err;
 	printk("%s\n", __func__);
 	
-	err = platform_device_register(&pca9685_dev);
+	//err = platform_device_register(&pca9685_dev);
+	pca9685_dev = platform_device_alloc(DEVNAME, 0);
 	if( err ) {
-		pr_err("%s(#%d): platform_device_register failed", __func__, __LINE__, err);
-		return err;
+		pr_err("%s(#%d): platform_device_alloc failed. %d", __func__, __LINE__, err);
+		return -ENOMEM;
 	} 
+	
+	err = platform_device_add(pca9685_dev);
+	if( err ) { 
+		pr_err("%s(#%d): platform_device_add failed. %d", __func__, __LINE__, err);
+		goto platform_device_add_err_handle;
+	}	
 	
 	err = platform_driver_register(&pca9685_driver);
 	if( err ) {
-		dev_err(&(pca9685_dev.dev),"%s(#%d): platform_driver_register failed", __func__, __LINE__, err);
-		goto err_handle;
+		dev_err(&(pca9685_dev->dev),"%s(#%d): platform_driver_register failed. %d", __func__, __LINE__, err);
+		goto platform_driver_register_err_handle;
 	} 
 	
 	return err;
 	
-err_handle:
-	platform_device_unregister(&pca9685_dev);
+platform_device_add_err_handle:
+	platform_device_put(pca9685_dev);
+
+platform_driver_register_err_handle:
+	platform_device_unregister(pca9685_dev);
 	return err;
 }
 
 static void __exit pca9685_driver_exit(void)
 {	
-	dev_info(&(pca9685_dev.dev), "%s(#%d)\n", __func__, __LINE__);
-	platform_device_unregister(&pca9685_dev);
+	dev_info(&(pca9685_dev->dev), "%s(#%d)\n", __func__, __LINE__);
+	platform_device_unregister(pca9685_dev);
     platform_driver_unregister(&pca9685_driver);
 }
 
