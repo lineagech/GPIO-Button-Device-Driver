@@ -390,6 +390,174 @@ deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0
     $(wildcard include/config/arch/omap.h) \
   include/linux/pm_wakeup.h \
   include/linux/mod_devicetable.h \
+  include/linux/i2c.h \
+    $(wildcard include/config/i2c.h) \
+    $(wildcard include/config/i2c/boardinfo.h) \
+  include/linux/sched.h \
+    $(wildcard include/config/sched/debug.h) \
+    $(wildcard include/config/no/hz.h) \
+    $(wildcard include/config/lockup/detector.h) \
+    $(wildcard include/config/detect/hung/task.h) \
+    $(wildcard include/config/core/dump/default/elf/headers.h) \
+    $(wildcard include/config/sched/autogroup.h) \
+    $(wildcard include/config/virt/cpu/accounting.h) \
+    $(wildcard include/config/bsd/process/acct.h) \
+    $(wildcard include/config/taskstats.h) \
+    $(wildcard include/config/audit.h) \
+    $(wildcard include/config/cgroups.h) \
+    $(wildcard include/config/inotify/user.h) \
+    $(wildcard include/config/fanotify.h) \
+    $(wildcard include/config/epoll.h) \
+    $(wildcard include/config/posix/mqueue.h) \
+    $(wildcard include/config/keys.h) \
+    $(wildcard include/config/perf/events.h) \
+    $(wildcard include/config/schedstats.h) \
+    $(wildcard include/config/task/delay/acct.h) \
+    $(wildcard include/config/fair/group/sched.h) \
+    $(wildcard include/config/rt/group/sched.h) \
+    $(wildcard include/config/blk/dev/io/trace.h) \
+    $(wildcard include/config/rcu/boost.h) \
+    $(wildcard include/config/compat/brk.h) \
+    $(wildcard include/config/cc/stackprotector.h) \
+    $(wildcard include/config/sysvipc.h) \
+    $(wildcard include/config/auditsyscall.h) \
+    $(wildcard include/config/rt/mutexes.h) \
+    $(wildcard include/config/block.h) \
+    $(wildcard include/config/task/xacct.h) \
+    $(wildcard include/config/cpusets.h) \
+    $(wildcard include/config/futex.h) \
+    $(wildcard include/config/fault/injection.h) \
+    $(wildcard include/config/latencytop.h) \
+    $(wildcard include/config/function/graph/tracer.h) \
+    $(wildcard include/config/uprobes.h) \
+    $(wildcard include/config/have/unstable/sched/clock.h) \
+    $(wildcard include/config/irq/time/accounting.h) \
+    $(wildcard include/config/proc/fs.h) \
+    $(wildcard include/config/cfs/bandwidth.h) \
+    $(wildcard include/config/stack/growsup.h) \
+    $(wildcard include/config/cgroup/sched.h) \
+    $(wildcard include/config/mm/owner.h) \
+  include/linux/capability.h \
+  include/linux/mm_types.h \
+    $(wildcard include/config/split/ptlock/cpus.h) \
+    $(wildcard include/config/have/cmpxchg/double.h) \
+    $(wildcard include/config/have/aligned/struct/page.h) \
+    $(wildcard include/config/want/page/debug/flags.h) \
+    $(wildcard include/config/aio.h) \
+    $(wildcard include/config/mmu/notifier.h) \
+    $(wildcard include/config/transparent/hugepage.h) \
+  include/linux/auxvec.h \
+  arch/arm/include/generated/asm/auxvec.h \
+  include/asm-generic/auxvec.h \
+  include/linux/prio_tree.h \
+  include/linux/page-debug-flags.h \
+    $(wildcard include/config/page/poisoning.h) \
+    $(wildcard include/config/page/guard.h) \
+    $(wildcard include/config/page/debug/something/else.h) \
+  include/linux/uprobes.h \
+    $(wildcard include/config/arch/supports/uprobes.h) \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/mmu.h \
+    $(wildcard include/config/cpu/has/asid.h) \
+  arch/arm/include/generated/asm/cputime.h \
+  include/asm-generic/cputime.h \
+  include/linux/sem.h \
+  include/linux/ipc.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/ipcbuf.h \
+  include/asm-generic/ipcbuf.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/sembuf.h \
+  include/linux/signal.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/signal.h \
+  include/asm-generic/signal-defs.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/sigcontext.h \
+  arch/arm/include/generated/asm/siginfo.h \
+  include/asm-generic/siginfo.h \
+  include/linux/pid.h \
+  include/linux/proportions.h \
+  include/linux/percpu_counter.h \
+  include/linux/seccomp.h \
+    $(wildcard include/config/seccomp.h) \
+    $(wildcard include/config/seccomp/filter.h) \
+  include/linux/rculist.h \
+  include/linux/rtmutex.h \
+    $(wildcard include/config/debug/rt/mutexes.h) \
+  include/linux/plist.h \
+    $(wildcard include/config/debug/pi/list.h) \
+  include/linux/resource.h \
+  arch/arm/include/generated/asm/resource.h \
+  include/asm-generic/resource.h \
+  include/linux/hrtimer.h \
+    $(wildcard include/config/high/res/timers.h) \
+    $(wildcard include/config/timerfd.h) \
+  include/linux/timerqueue.h \
+  include/linux/task_io_accounting.h \
+    $(wildcard include/config/task/io/accounting.h) \
+  include/linux/latencytop.h \
+  include/linux/cred.h \
+    $(wildcard include/config/debug/credentials.h) \
+    $(wildcard include/config/security.h) \
+  include/linux/key.h \
+  include/linux/selinux.h \
+    $(wildcard include/config/security/selinux.h) \
+  include/linux/llist.h \
+    $(wildcard include/config/arch/have/nmi/safe/cmpxchg.h) \
+  include/linux/aio.h \
+  include/linux/aio_abi.h \
+  include/linux/uio.h \
+  include/linux/of.h \
+    $(wildcard include/config/sparc.h) \
+    $(wildcard include/config/of/dynamic.h) \
+    $(wildcard include/config/of.h) \
+  include/linux/fs.h \
+    $(wildcard include/config/fs/posix/acl.h) \
+    $(wildcard include/config/quota.h) \
+    $(wildcard include/config/fsnotify.h) \
+    $(wildcard include/config/ima.h) \
+    $(wildcard include/config/debug/writecount.h) \
+    $(wildcard include/config/file/locking.h) \
+    $(wildcard include/config/fs/xip.h) \
+    $(wildcard include/config/migration.h) \
+  include/linux/limits.h \
+  include/linux/ioctl.h \
+  arch/arm/include/generated/asm/ioctl.h \
+  include/asm-generic/ioctl.h \
+  include/linux/blk_types.h \
+    $(wildcard include/config/blk/cgroup.h) \
+    $(wildcard include/config/blk/dev/integrity.h) \
+  include/linux/kdev_t.h \
+  include/linux/dcache.h \
+  include/linux/rculist_bl.h \
+  include/linux/list_bl.h \
+  include/linux/bit_spinlock.h \
+  include/linux/path.h \
+  include/linux/radix-tree.h \
+  include/linux/semaphore.h \
+  include/linux/fiemap.h \
+  include/linux/shrinker.h \
+  include/linux/migrate_mode.h \
+  include/linux/quota.h \
+    $(wildcard include/config/quota/netlink/interface.h) \
+  include/linux/dqblk_xfs.h \
+  include/linux/dqblk_v1.h \
+  include/linux/dqblk_v2.h \
+  include/linux/dqblk_qtree.h \
+  include/linux/nfs_fs_i.h \
+  include/linux/fcntl.h \
+  /home/cadtc/day4/linux-3.5-Tiny4412/arch/arm/include/asm/fcntl.h \
+  include/asm-generic/fcntl.h \
+  include/linux/err.h \
+  include/linux/cdev.h \
+  include/linux/slab.h \
+    $(wildcard include/config/slab/debug.h) \
+    $(wildcard include/config/failslab.h) \
+    $(wildcard include/config/slub.h) \
+    $(wildcard include/config/slob.h) \
+    $(wildcard include/config/debug/slab.h) \
+    $(wildcard include/config/slab.h) \
+  include/linux/slub_def.h \
+    $(wildcard include/config/slub/stats.h) \
+    $(wildcard include/config/slub/debug.h) \
+  include/linux/kmemleak.h \
+    $(wildcard include/config/debug/kmemleak.h) \
 
 /home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o: $(deps_/home/cadtc/tiny4412/experiment/day1/GPIO-Button-Device-Driver/kernel_3_5_0/drivers/char/pca9685_driver.o)
 
