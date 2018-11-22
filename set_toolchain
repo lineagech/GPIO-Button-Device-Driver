@@ -1,0 +1,12 @@
+#!/bin/sh
+#PATH=$PATH:/home/cadtc/tiny4412/toolchain/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabi/bin
+
+#export CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm
+#export KERNELDIR=/home/cadtc/tiny4412/kernel_3_5_0
+#export INSTALL=/home/cadtc/tiny4412/driver_install
+
+#export KERNELDIR=/home/cadtc/tiny4412/linux-master
+export KERNELDIR=/home/cadtc/day4/linux-3.5-Tiny4412
+export CROSS_COMPILE=arm-linux- ARCH=arm
+export INSTALL=/home/cadtc/tiny4412/driver_install
+export INSTALL_MOD_PATH=${KERNELDIR}/install_module/
