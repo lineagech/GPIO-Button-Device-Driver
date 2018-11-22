@@ -1,10 +1,10 @@
 # Linux-Device-Driver
 
-This porjects is a demo of combination of linux driver and OpenCV application: ![Demo]()
+This porjects is the combination of linux driver and OpenCV application: ![Demo]()
 
 ![](https://github.com/lineagech/Linux-Device-Driver/blob/master/BD.JPG)
 
-The repository is the root file system of tiny4412 development board. It can be found that self-developed driver source code is in [](kernel_3_5_0/drivers/char). I use linux 3.5 for tiny4412 to make driver modules. If you are interested in building linux drivers, you should download linux 3.5 first and then modify set_toolchain and source it to set up building environment.
+The repository is the root file system of tiny4412 development board. It can be found that self-developed driver source code is in [](kernel_3_5_0/drivers/char). I use linux 3.5 for tiny4412 to make driver modules. If you are interested in building linux drivers, you should download linux 3.5 first and then modify [set_toolchain](https://github.com/lineagech/Linux-Device-Driver/blob/master/set_toolchain) and source it to set up building environment.
 
 # Install Driver on the Tiny4412
 ```
@@ -24,7 +24,7 @@ source ~/.bashrc
 ```
 
 # luvcview 
-[]()
+[https://mega.nz/#!iEpnkYTJ!-4zJL1hINZJpK4BV8tWJrShpd3AXhpxym65LoQc753I(https://mega.nz/#!iEpnkYTJ!-4zJL1hINZJpK4BV8tWJrShpd3AXhpxym65LoQc753I)
 ```
 arm-linux-gcc -c luvcview.c -o luvcview.o
 arm-linux-gcc -shared -Wl,-soname,libluvcview.so.1 -o libluvcview.so.1.0.0 v4l2uvc.o utils.o luvcview.o color.o avilib.o
@@ -35,7 +35,7 @@ sudo cp libluvcview.* ~/root_mkfs/lib
 ```
 
 # fbv-0.99
-[]()
+[https://mega.nz/#!6Z5z2SYA!hQyKZZ-2a89RyGF6oWDDw_jI90hsV7CIWZHxBJQBvAs](https://mega.nz/#!6Z5z2SYA!hQyKZZ-2a89RyGF6oWDDw_jI90hsV7CIWZHxBJQBvAs)
 ```
 arm-linux-gcc -c fb_display.c -o fb_display.o
 arm-linux-gcc -shared -Wl,-soname,libfb_display.so.1 -o libfb_display.so.1.0.0 fb_display.o
