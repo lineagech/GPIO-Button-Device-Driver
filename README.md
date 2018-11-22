@@ -15,11 +15,16 @@ insmod tiny4412_button_driver.ko
 ```
 
 # Build Toolchain
-```
 [https://mega.nz/#!qZpD2AgC!KuPWG25YRwV5u7pd7rLGIUemlf8g9QZ0GFTWh8KrrfA](https://mega.nz/#!qZpD2AgC!KuPWG25YRwV5u7pd7rLGIUemlf8g9QZ0GFTWh8KrrfA)
 ```
+sudo tar -jxvf arm-4.5.1.tar.bz2 -C /usr/local
+vim ~/.bashrc
+export PATH=/usr/local/arm/4.5.1/bin:$PATH
+source ~/.bashrc
+```
 
-# luvcview
+# luvcview 
+[]()
 ```
 arm-linux-gcc -c luvcview.c -o luvcview.o
 arm-linux-gcc -shared -Wl,-soname,libluvcview.so.1 -o libluvcview.so.1.0.0 v4l2uvc.o utils.o luvcview.o color.o avilib.o
@@ -30,6 +35,7 @@ sudo cp libluvcview.* ~/root_mkfs/lib
 ```
 
 # fbv-0.99
+[]()
 ```
 arm-linux-gcc -c fb_display.c -o fb_display.o
 arm-linux-gcc -shared -Wl,-soname,libfb_display.so.1 -o libfb_display.so.1.0.0 fb_display.o
@@ -40,8 +46,8 @@ sudo cp libfb_display.* ~/root_mkfs/lib
 ```
 
 # OpenCV
-```
 [https://mega.nz/#F!WAwjCIKS!ZNMhkVfIJ_GsI4mXMM-Crw](https://mega.nz/#F!WAwjCIKS!ZNMhkVfIJ_GsI4mXMM-Crw)
+```
 sudo apt-get install cmake-qt-gui
 tar xvf OpenCV-2.4.0.tar.bz2
 cd OpenCV-2.4.0
@@ -68,8 +74,8 @@ sudo cp libstdc* ~/root_mkfs/lib
 ```
 
 # FC application
-```
 [https://mega.nz/#F!SVxhTYII!7N7jj21ih4ffm1ie15WcwQ](https://mega.nz/#F!SVxhTYII!7N7jj21ih4ffm1ie15WcwQ)
+```
 arm-linux-g++ -o FCEXE FC.c -I. -lz -lpthread -lrt -lpng -ljpeg -lluvcview -lopencv_highgui -lopencv_objdetect -lopencv_imgproc -lopencv_core -lfb_display
 
 sudo cp FCEXE ~/root_mkfs/
