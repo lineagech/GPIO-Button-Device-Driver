@@ -18,10 +18,58 @@ insmod tiny4412_button_driver.ko
 [https://mega.nz/#!qZpD2AgC!KuPWG25YRwV5u7pd7rLGIUemlf8g9QZ0GFTWh8KrrfA](https://mega.nz/#!qZpD2AgC!KuPWG25YRwV5u7pd7rLGIUemlf8g9QZ0GFTWh8KrrfA)
 '''
 
+# luvcview
+'''
+arm-linux-gcc -c luvcview.c -o luvcview.o
+arm-linux-gcc -shared -Wl,-soname,libluvcview.so.1 -o libluvcview.so.1.0.0 v4l2uvc.o utils.o luvcview.o color.o avilib.o
+ln -s libluvcview.so.1.0.0 libluvcview.so.1
+ln -s libluvcview.so.1 libluvcview.so
+sudo cp libluvcview.* /usr/local/arm/4.5.1/arm-none-linux-gnueabi/lib
+sudo cp libluvcview.* ~/root_mkfs/lib
+'''
+
+# fbv-0.99
+arm-linux-gcc -c fb_display.c -o fb_display.o
+arm-linux-gcc -shared -Wl,-soname,libfb_display.so.1 -o libfb_display.so.1.0.0 fb_display.o
+ln -s libfb_display.so.1.0.0 libfb_display.so.1
+ln -s libfb_display.so.1 libfb_display.so
+sudo cp libfb_display.* /usr/local/arm/4.5.1/arm-none-linux-gnueabi/lib
+sudo cp libfb_display.* ~/root_mkfs/lib
+
 # OpenCV
 '''
 [https://mega.nz/#F!WAwjCIKS!ZNMhkVfIJ_GsI4mXMM-Crw](https://mega.nz/#F!WAwjCIKS!ZNMhkVfIJ_GsI4mXMM-Crw)
+sudo apt-get install cmake-qt-gui
+tar xvf OpenCV-2.4.0.tar.bz2
+cd OpenCV-2.4.0
+cmake-gui
+whereis the source code:/home/cadtc/OpenCV-2.4.0
+where to build teh binaryes:/home/cadtc/OpenCV-2.4.0
+Tools-->configure:
+Specify options for cross-compiling
+	Operating System:	Linux
+	Processor:		arm	
+	C Compilers:		/usr/local/arm/4.5.1/bin/arm-none-linux-gnueabi-gcc
+	C++ Compilers:		/usr/local/arm/4.5.1/bin/arm-none-linux-gnueabi-g++
+	Target Root:		/usr/local/arm/4.5.1/arm-none-linux-gnueabi/
+vi CmakeCache.txt
+	CMAKE_INSTALL_PREFIX:	/usr/local/arm/4.5.1/arm-none-linux-gnueabi/
+	CMAKE_EXE_LINKER_FLAGS:	-lpthread -lrt
+make -j4
+gedit cmake_install.cmake
+  SET(CMAKE_INSTALL_PREFIX "/usr/local/arm/4.5.1/arm-none-linux-gnueabi/")
+sudo make install
+cd /usr/local/arm/4.5.1/arm-none-linux-gnueabi/lib
+sudo cp libopencv* ~/root_mkfs/lib
+sudo cp libstdc* ~/root_mkfs/lib
 '''
 
 # FC application
+'''
 [https://mega.nz/#F!SVxhTYII!7N7jj21ih4ffm1ie15WcwQ](https://mega.nz/#F!SVxhTYII!7N7jj21ih4ffm1ie15WcwQ)
+arm-linux-g++ -o FCEXE FC.c -I. -lz -lpthread -lrt -lpng -ljpeg -lluvcview -lopencv_highgui -lopencv_objdetect -lopencv_imgproc -lopencv_core -lfb_display
+
+sudo cp FCEXE ~/root_mkfs/
+sudo cp lbpcascade_frontalface.xml ~/root1_mkfs
+sudo cp haarcascade_* ~/root_mkfs
+'''
