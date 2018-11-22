@@ -1,0 +1,145 @@
+#!/bin/sh
+echo " "
+echo "*********************Real6410*************************"
+echo "*********************Main Menu************************"
+echo "************Use this fs to make real fs***************"
+echo ""
+
+#cat /proc/cmdline | grep "qtopia"
+cmdline=`cat /proc/cmdline`
+qtopia_cmd="noinitrd root=/dev/mtdblock0 console=ttySAC0 init=/linuxrc qtopia"
+android_cmd="noinitrd root=/dev/mtdblock0 console=ttySAC0 init=/linuxrc android"
+
+if [ "$cmdline" = "$qtopia_cmd" ]
+then
+	cd /tmp
+	echo "Now,download qtopia.tar.gz from server,wait a minute..."
+	tftp -g -l qtopia.tar.gz 192.168.1.178
+	echo "download done."
+	if [ -s qtopia.tar.gz ]
+	then
+		/sbin/flash_eraseall /dev/mtd1
+		/sbin/ubiattach /dev/ubi_ctrl -m 1
+		/sbin/ubimkvol /dev/ubi0 -N rootfs -s 900MiB
+		mount -t ubifs ubi0_0 /mnt/mtd1
+		tar -zxvf qtopia.tar.gz -C /mnt/mtd1
+		rm qtopia.tar.gz
+		reboot
+	else
+		echo "Download qtopia.tar.gz fail,exit"
+		exit 1
+	fi
+elif [ "$cmdline" = "$android_cmd" ]
+then
+	cd /tmp
+	echo "Now,download android.tar.gz from server,wait a minute..."
+	tftp -g -l android.tar.gz 192.168.1.178
+	echo "download done."
+	if [ -s android.tar.gz ]
+	then
+		/sbin/flash_eraseall /dev/mtd1
+		/sbin/ubiattach /dev/ubi_ctrl -m 1
+		/sbin/ubimkvol /dev/ubi0 -N rootfs -s 900MiB
+		mount -t ubifs ubi0_0 /mnt/mtd1
+		tar -zxvf android.tar.gz -C /mnt/mtd1
+		rm android.tar.gz
+		reboot
+	else
+		echo "Download android.tar.gz fail,exit"
+		exit 1
+	fi
+else
+
+echo "1.Put your rootfs tar ball in sdcard or udisk,then,insert it"
+echo "***For android,the tar name should be android.tar.gz.**"
+echo "****For qtopia,the tar name should be qtopia.tar.gz.****"
+echo "Now pls Select the system you want to creat"
+echo "a.Android"
+echo "b.Qtopia"
+echo "c.Exit"
+read choice
+case $choice in  
+        a)  
+        if [ -e /mnt/udisk/android.tar.gz ]
+		then
+			rootfs=/mnt/udisk/android.tar.gz
+		elif [ -e /mnt/sdcard/android.tar.gz ]
+		then
+			rootfs=/mnt/sdcard/android.tar.gz
+		else
+			echo "I can't find android.tar.gz in udisk or sdcard"
+			exit 1
+		fi
+        ;;  
+        b)  
+        if [ -e /mnt/udisk/qtopia.tar.gz ]
+		then
+			rootfs=/mnt/udisk/qtopia.tar.gz
+		elif [ -e /mnt/sdcard/qtopia.tar.gz ]
+		then
+			rootfs=/mnt/sdcard/qtopia.tar.gz
+		else
+			echo "I can't find qtopia.tar.gz in udisk or sdcard"
+			exit 1
+		fi
+	 ;;  
+        c) 
+          exit 1  
+        ;;  
+	*) 
+          echo "Hi man,you have enter invalid number"  
+          exit 1
+        ;;  
+esac
+echo ""
+
+echo "2.We need to format the mtdblock1 to ubifs."
+echo "a.Yes,do it now"
+echo "b.No,next time"
+read choice
+case $choice in  
+        a)  
+          /sbin/flash_eraseall /dev/mtd1
+          /sbin/ubiattach /dev/ubi_ctrl -m 1
+		  /sbin/ubimkvol /dev/ubi0 -N rootfs -s 900MiB
+		  mount -t ubifs ubi0_0 /mnt/mtd1
+		  tar -zxvf $rootfs -C /mnt/mtd1
+        ;;  
+        b)  
+          exit 0
+        ;;  
+		*) 
+          echo "Hi man,you have enter invalid number"  
+        ;;  
+esac  
+
+
+
+echo "3.Umounting /dev/mtd1....."
+umount /mnt/mtd1
+echo ""
+
+echo "3.Reboot and change the cmdline"
+echo "Now you can reboot the machine,then enter the u-boot shell,"
+echo "change the cmdline to"
+echo "setenv bootargs noinitrd console=ttySAC0 init=/init ubi.mtd=1 root=ubi0:rootfs rootfstype=ubifs"
+echo ""
+echo "And if you want to repeat this process,enter the u-boot shell,"
+echo "change the cmdline to"
+echo "setenv bootargs noinitrd root=/dev/mtdblock0 console=ttySAC0 init=/init"
+echo "Do you want to reboot now(y/n)?"
+read choice
+case $choice in  
+        y)  
+	reboot
+        ;;  
+        n)  
+	echo "Now exit,and you could't run this program(mkfs) in you shell until reboot."
+	exit 0
+        ;;  
+	*) 
+          echo "Hi man,you have enter invalid number"  
+        ;;  
+esac  
+ 
+fi

@@ -1,0 +1,4 @@
+kernel/crypto/ansi_cprng.ko
+kernel/drivers/char/tiny4412_hello_module.ko
+kernel/drivers/scsi/scsi_wait_scan.ko
+kernel/drivers/i2c/i2c-mux.ko

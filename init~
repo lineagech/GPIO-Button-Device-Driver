@@ -1,0 +1,6 @@
+#!/bin/sh
+/bin/mout -t ramfs none /etc
+/bin/cp -r /root/etc/* /etc
+/bin/mout -t ramfs none /root/Settings
+/bin/cp -r /root/Settings-bk/* /root/Settings
+/linuxrc
